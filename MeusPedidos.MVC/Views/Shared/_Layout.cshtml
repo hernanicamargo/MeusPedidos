@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Vagas Meus Pedidos 2017</title>    
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <script type="text/javascript">
+        $(function () {
+            $('.rating-enable').click(function () {
+                $('#example-a, #example-b').barrating();
+
+                $('#example-c, #example-d').barrating('show', {
+                    showValues:true,
+                    showSelectedRating:false
+                });
+
+                $('#example-e').barrating('show', {
+                    showValues:true,
+                    showSelectedRating:false,
+                    onSelect:function(value, text) {
+                        alert('Rating: ' + value);
+                    }
+                });
+
+                $('#example-f').barrating({ showSelectedRating:false });
+
+                $(this).addClass('deactivated');
+                $('.rating-disable').removeClass('deactivated');
+            });
+
+            $('.rating-disable').click(function () {
+                $('select').barrating('destroy');
+                $(this).addClass('deactivated');
+                $('.rating-enable').removeClass('deactivated');
+            });
+
+            $('.rating-enable').trigger('click');
+        });
+    </script>
+
+</head>
+<body>
+    <div class="body-content">
+        @RenderBody()
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")    
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
